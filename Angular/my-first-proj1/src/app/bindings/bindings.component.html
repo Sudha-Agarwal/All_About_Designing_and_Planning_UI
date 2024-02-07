@@ -1,0 +1,19 @@
+<p>bindings works!</p>
+
+<h1>{{title}}</h1> <!-- String interpolation-->
+<button [disabled]="buttonDisabled" (click)="clickMe()">Click me</button> <!--Property binding-->
+
+<img [src]="imgPath">
+
+<a [href] = "linkPath">Click here</a>
+
+<!--Class Binding-->
+
+<div [class.active] = "isActive" [class.inactive] = "!isActive">Some content here</div>
+
+<div [className] = "hasError() ? 'red' : 'size20'">Conditional Class</div>
+
+<div [className] = "'red size20'">Red and Big</div>
+
+<!--Style Binding-->
+<div [ngStyle] = "{'color':'red', 'font-size':'20px'}">Style binding</div>

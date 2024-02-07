@@ -1,0 +1,15 @@
+.active{
+    color:blue;
+}
+
+.inactive{
+    color:grey;
+}
+
+.red{
+    color:red;
+}
+
+.size20{
+    font-size:20px;
+}
