@@ -1,0 +1,78 @@
+<h2>Tasks</h2>
+
+<table>
+  <caption>List of Tasks</caption>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <ng-container *ngIf="updatingTaskId !== task.task_id; else updateForm">
+        <td>{{ task.project_name }}</td> <!-- Display project name instead of ID -->
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.due_date | date: 'shortDate' }}</td>
+        <td>{{ task.status }}</td>
+        <td>
+          <button (click)="deleteTask(task.task_id)">Delete</button>
+          <button (click)="startUpdateTask(task.task_id)">Update</button>
+        </td>
+      </ng-container>
+      <ng-template #updateForm>
+        <td>
+          <label for="project">Project:</label>
+          <!-- Use a dropdown to select the project -->
+          <select id="project" [(ngModel)]="updatingTask.project_id">
+            <option *ngFor="let project of projects" [value]="project.project_id">{{ project.name }}</option>
+          </select>
+        </td>
+        <td>
+          <label for="title">Title:</label>
+          <input id="title" [(ngModel)]="updatingTask.title" placeholder="Title">
+        </td>
+        <td>
+          <label for="description">Description:</label>
+          <input id="description" [(ngModel)]="updatingTask.description" placeholder="Description">
+        </td>
+        <td>
+          <label for="dueDate">Due Date:</label>
+          <input id="dueDate" type="date" [(ngModel)]="updatingTask.due_date">
+        </td>
+        <td>
+          <label for="status">Status:</label>
+          <input id="status" [(ngModel)]="updatingTask.status" placeholder="Status">
+        </td>
+        <td>
+          <button (click)="updateTask()">Save</button>
+          <button (click)="cancelUpdateTask()">Cancel</button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Add New Task</h2>
+
+<div>
+  <label for="newProject">Project:</label>
+  <!-- Use a dropdown to select the project when adding a new task -->
+  <select id="newProject" [(ngModel)]="newTask.project_id" placeholder="Project">
+    <option *ngFor="let project of projects" [value]="project.project_id">{{ project.name }}</option>
+  </select>
+  <label for="newTitle">Title:</label>
+  <input id="newTitle" [(ngModel)]="newTask.title" placeholder="Title">
+  <label for="newDescription">Description:</label>
+  <input id="newDescription" [(ngModel)]="newTask.description" placeholder="Description">
+  <label for="newDueDate">Due Date:</label>
+  <input id="newDueDate" type="date" [(ngModel)]="newTask.due_date">
+  <label for="newStatus">Status:</label>
+  <input id="newStatus" [(ngModel)]="newTask.status" placeholder="Status">
+  <button (click)="addTask()">Add</button>
+</div>

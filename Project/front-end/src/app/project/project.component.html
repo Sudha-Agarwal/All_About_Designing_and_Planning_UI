@@ -1,0 +1,64 @@
+<h2>Projects</h2>
+
+<table>
+  <caption>List of Projects</caption>
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of projects">
+      <ng-container *ngIf="updatingProjectId !== project.project_id; else updateForm">
+        <td>{{ project.client_name }}</td> <!-- Display client name instead of ID -->
+        <td>{{ project.name }}</td>
+        <td>{{ project.description }}</td>
+        <td>{{ project.start_date | date: 'shortDate' }}</td>
+        <td>{{ project.end_date | date: 'shortDate' }}</td>
+        <td>{{ project.status }}</td>
+        <td>
+          <button (click)="deleteProject(project.project_id)">Delete</button>
+          <button (click)="startUpdateProject(project.project_id)">Update</button>
+        </td>
+      </ng-container>
+      <ng-template #updateForm>
+        <td>
+          <!-- Use a dropdown to select the client -->
+          <select [(ngModel)]="updatingProject.client_id">
+            <option *ngFor="let client of clients" [value]="client.client_id">{{ client.name }}</option>
+          </select>
+        </td>
+        <td><label>Name:</label><input [(ngModel)]="updatingProject.name" placeholder="Name"></td>
+        <td><label>Description:</label><input [(ngModel)]="updatingProject.description" placeholder="Description"></td>
+        <td><label>Start Date:</label><input type="date" [(ngModel)]="updatingProject.start_date"></td>
+        <td><label>End Date:</label><input type="date" [(ngModel)]="updatingProject.end_date"></td>
+        <td><label>Status:</label><input [(ngModel)]="updatingProject.status" placeholder="Status"></td>
+        <td>
+          <button (click)="updateProject()">Save</button>
+          <button (click)="cancelUpdateProject()">Cancel</button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Add New Project</h2>
+
+<div>
+  <!-- Use a dropdown to select the client when adding a new project -->
+  <select [(ngModel)]="newProject.client_id" placeholder="Client">
+    <option *ngFor="let client of clients" [value]="client.client_id">{{ client.name }}</option>
+  </select>
+  <label>Name:</label><input [(ngModel)]="newProject.name" placeholder="Name">
+  <label>Description:</label><input [(ngModel)]="newProject.description" placeholder="Description">
+  <label>Start Date:</label><input type="date" [(ngModel)]="newProject.start_date">
+  <label>End Date:</label><input type="date" [(ngModel)]="newProject.end_date">
+  <label>Status:</label><input [(ngModel)]="newProject.status" placeholder="Status">
+  <button (click)="addProject()">Add</button>
+</div>

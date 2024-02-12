@@ -1,0 +1,24 @@
+<div *ngIf="isLoggedIn; else loginMessage">
+    <p>Welcome {{username}}</p>
+    <button (click)="logout()">Logout</button>
+</div>
+
+<ng-template #loginMessage>
+    <p>Not logged In</p>
+    <p>Please log in first</p>
+
+    <form (ngSubmit) = "login()">
+        Email:<input type="email" name="username" [(ngModel)]="username">
+
+        <button type="submit">Login</button>
+    </form>
+
+</ng-template>
+
+<p>ngSwitch</p>
+<!-- ngSwitch-->
+<div [ngSwitch]="userRole">
+    <p *ngSwitchCase="'admin'">You have admin role</p>
+    <p *ngSwitchCase="'user'">You have standard role</p>
+    <p *ngSwitchDefault>No role assigned</p>
+</div>

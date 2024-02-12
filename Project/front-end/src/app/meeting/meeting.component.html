@@ -1,0 +1,56 @@
+<h2>Meetings</h2>
+
+<table>
+  <caption>List of Meetings</caption>
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Date & Time</th>
+      <th>Agenda</th>
+      <th>Location</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let meeting of meetings">
+      <ng-container *ngIf="updatingMeetingId !== meeting.meeting_id; else updateForm">
+        <td>{{ meeting.client_name }}</td> <!-- Display client name instead of ID -->
+        <td>{{ meeting.date_time | date: 'shortDate' }}</td>
+        <td>{{ meeting.agenda }}</td>
+        <td>{{ meeting.location }}</td>
+        <td>
+          <button (click)="deleteMeeting(meeting.meeting_id)">Delete</button>
+          <button (click)="startUpdateMeeting(meeting.meeting_id)">Update</button>
+        </td>
+      </ng-container>
+      <ng-template #updateForm>
+        <td>
+          <!-- Use a dropdown to select the client -->
+          <select [(ngModel)]="updatingMeeting.client_id">
+            <option *ngFor="let client of clients" [value]="client.client_id">{{ client.name }}</option>
+          </select>
+        </td>
+        <td><input type="datetime-local" [(ngModel)]="updatingMeeting.date_time"></td>
+        <td><input [(ngModel)]="updatingMeeting.agenda" placeholder="Agenda"></td>
+        <td><input [(ngModel)]="updatingMeeting.location" placeholder="Location"></td>
+        <td>
+          <button (click)="updateMeeting()">Save</button>
+          <button (click)="cancelUpdateMeeting()">Cancel</button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Add New Meeting</h2>
+
+<div>
+  <!-- Use a dropdown to select the client when adding a new meeting -->
+  <select [(ngModel)]="newMeeting.client_id" placeholder="Client">
+    <option *ngFor="let client of clients" [value]="client.client_id">{{ client.name }}</option>
+  </select>
+  <input type="datetime-local" [(ngModel)]="newMeeting.date_time">
+  <input [(ngModel)]="newMeeting.agenda" placeholder="Agenda">
+  <input [(ngModel)]="newMeeting.location" placeholder="Location">
+  <button (click)="addMeeting()">Add</button>
+</div>

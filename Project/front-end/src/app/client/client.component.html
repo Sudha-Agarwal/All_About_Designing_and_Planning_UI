@@ -1,0 +1,48 @@
+<h2>Clients</h2>
+
+<table>
+  <caption>List of Clients</caption> <!-- Add a caption for the table -->
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <ng-container *ngIf="updatingClientId !== client.client_id; else updateForm">
+        <td>{{ client.name }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+        <td>{{ client.address }}</td>
+        <td>
+          <button (click)="deleteClient(client.client_id)">Delete</button>
+          <button (click)="startUpdateClient(client.client_id)">Update</button>
+        </td>
+      </ng-container>
+      <ng-template #updateForm>
+        <td><input [(ngModel)]="updatingClient.name" placeholder="Name"></td>
+        <td><input [(ngModel)]="updatingClient.email" placeholder="Email"></td>
+        <td><input [(ngModel)]="updatingClient.phone" placeholder="Phone"></td>
+        <td><input [(ngModel)]="updatingClient.address" placeholder="Address"></td>
+        <td>
+          <button (click)="updateClient()">Save</button>
+          <button (click)="cancelUpdateClient()">Cancel</button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Add New Client</h2>
+
+<div>
+  <input [(ngModel)]="newClient.name" placeholder="Name">
+  <input [(ngModel)]="newClient.email" placeholder="Email">
+  <input [(ngModel)]="newClient.phone" placeholder="Phone">
+  <input [(ngModel)]="newClient.address" placeholder="Address">
+  <button (click)="addClient()">Add</button>
+</div>

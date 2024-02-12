@@ -1,0 +1,25 @@
+<div class="container">
+<form (ngSubmit) = "loginForm.valid && onSubmit()" #loginForm="ngForm">
+    Email: <input type="email" name="email" [(ngModel)] = "user.email" required 
+    pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+    [ngClass] = "{'is-invalid': loginForm.submitted && email.errors}"
+    #email="ngModel">
+    <div *ngIf="loginForm.submitted && email.errors" class="invalid-feedback">
+        <p *ngIf="email.errors && email.errors['required']">Email is required</p>
+        <p *ngIf="email.errors && email.errors['pattern']">Email is invalid</p>    
+    </div>
+
+    Password: <input type="password" name="password" [(ngModel)] = "user.password" required 
+    #password = "ngModel"
+    minlength="6"  [ngClass] = "{'is-invalid': loginForm.submitted && password.errors}">
+
+    <div *ngIf="loginForm.submitted && password.errors" class="invalid-feedback">
+        <p *ngIf="password.errors && password.errors['required']">Password is required</p>
+        <p *ngIf="password.errors && password.errors['minlength']">Password shuould be 6 characters long</p>    
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+
+
+</form>
+</div>
