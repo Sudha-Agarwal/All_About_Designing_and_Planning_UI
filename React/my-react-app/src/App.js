@@ -7,6 +7,7 @@ import UseEffectHook from './components/useEffectHook';
 import UseReducerHook from './components/useRecucerHook';
 import TodoApp from './components/TodoApp';
 import ParentComponent from './components/Redux/ParentComponent';
+import SignUpForm from './components/SignUpForm';
 
 
 
@@ -29,6 +30,7 @@ function App() {
       <UseReducerHook />
       <TodoApp />
       <ParentComponent />
+      <SignUpForm />
      
     </div>
   );

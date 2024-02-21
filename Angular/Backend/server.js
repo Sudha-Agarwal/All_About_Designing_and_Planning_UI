@@ -37,6 +37,12 @@ app.post("/login",(req,res) => {
     console.log("Request received");
     console.log(req.body);
     res.status(200).json({message:'Login successful'});
+});
+
+app.post("/signup",(req,res) => {
+  console.log("Request received");
+  console.log(req.body);
+  res.status(200).json({message:'Signup successful'});
 })
 
 

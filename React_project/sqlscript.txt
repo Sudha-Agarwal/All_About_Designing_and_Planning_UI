@@ -1,0 +1,30 @@
+CREATE TABLE genres (
+    genre_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE movies (
+    movie_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    rating FLOAT,
+    genre_id INT,
+    FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+);
+
+
+INSERT INTO genres (name) VALUES ('Action');
+INSERT INTO genres (name) VALUES ('Comedy');
+INSERT INTO genres (name) VALUES ('Drama');
+INSERT INTO genres (name) VALUES ('Sci-Fi');
+INSERT INTO genres (name) VALUES ('Thriller');
+
+INSERT INTO movies (title, rating, genre_id) VALUES ('The Dark Knight', 9.0, 1);
+INSERT INTO movies (title, rating, genre_id) VALUES ('Inception', 8.8, 4);
+INSERT INTO movies (title, rating, genre_id) VALUES ('Forrest Gump', 8.8, 3);
+INSERT INTO movies (title, rating, genre_id) VALUES ('The Shawshank Redemption', 9.3, 3);
+INSERT INTO movies (title, rating, genre_id) VALUES ('Pulp Fiction', 8.9, 5);
+INSERT INTO movies (title, rating, genre_id) VALUES ('The Matrix', 8.7, 1);
+INSERT INTO movies (title, rating, genre_id) VALUES ('The Godfather', 9.2, 3);
+INSERT INTO movies (title, rating, genre_id) VALUES ('Toy Story', 8.3, 2);
+INSERT INTO movies (title, rating, genre_id) VALUES ('The Lion King', 8.5, 2);
+INSERT INTO movies (title, rating, genre_id) VALUES ('Gladiator', 8.5, 1);
