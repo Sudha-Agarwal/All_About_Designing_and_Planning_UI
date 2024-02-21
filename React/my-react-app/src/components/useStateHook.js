@@ -2,9 +2,9 @@ import React,{useState} from "react";
 
 const UseStateHook = () => {
     //var count=0;
-    const [count, setCount] = useState(0);
-    const[count1, setCount1] = useState(0);
-
+    const [count, setCount] = useState(0); //array destructuring
+    const[count1, setCount1] = useState(0);  
+  
     const handleIncrement = () => {
         //count++;
         setCount(count+1);

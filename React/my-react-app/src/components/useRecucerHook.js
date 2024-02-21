@@ -5,7 +5,7 @@ const initialSate = {
     todos:[]
 }
 
-//Recucer Function
+//Reducer Function
 const counterReducer = (state1, action) => {
     switch(action.type){
         case 'INCREMENT':

@@ -5,6 +5,8 @@ import DisplayUserInfo from './components/FunctionalComponentProps';
 import UseStateHook from './components/useStateHook';
 import UseEffectHook from './components/useEffectHook';
 import UseReducerHook from './components/useRecucerHook';
+import TodoApp from './components/TodoApp';
+import ParentComponent from './components/Redux/ParentComponent';
 
 
 
@@ -25,6 +27,8 @@ function App() {
       <UseStateHook />
       <UseEffectHook />
       <UseReducerHook />
+      <TodoApp />
+      <ParentComponent />
      
     </div>
   );
